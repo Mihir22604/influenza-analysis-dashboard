@@ -1,46 +1,3 @@
-"""
-Influenza Weekly Analysis & Forecasting Streamlit App
-Filename: Influenza_Weekly_Analysis_Streamlit.py
-
-What this file includes:
-- Data loading & cleaning for a CSV of weekly influenza search/case counts per country
-- Country-wise weekly trends (interactive line/bar) + data table with filters
-- World heatmap (choropleth) showing intensity by country (hover shows values)
-- Top-5 leaderboard per selected week
-- Historical trend comparison across years
-- Forecasting (Prophet or ARIMA fallback) for next 2-4 weeks
-- Early warning alerts for high-risk weeks
-- Exporting (CSV, PNG of charts, PDF via matplotlib save)
-- News API + WHO/CDC health tips integration (placeholder: needs API key)
-- Email/SMS notification placeholders (SMTP / Twilio) — commented with instructions
-
-How to run (step-by-step):
-1) Put your dataset in the same folder with name `influenza_weekly.csv` or update the path below.
-2) Create and activate a Python virtual environment (recommended):
-   python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # macOS / Linux
-   source venv/bin/activate
-3) Install dependencies (these are the required packages):
-   pip install streamlit pandas numpy matplotlib plotly pycountry python-dateutil prophet pmdarima pycountry-convert
-   # If `prophet` installation fails on your machine, use the ARIMA fallback included.
-   # On some platforms, Prophet's package name is `prophet` (PyPI) or `fbprophet` older name.
-4) Run the Streamlit app:
-   streamlit run Influenza_Weekly_Analysis_Streamlit.py
-5) In the app UI, select country, date range, compare years, run forecasting, and download reports.
-
-Notes:
-- This script assumes your CSV has at least the following columns (case-insensitive):
-    - 'week' or 'date' (week identifier: e.g., '2021-01' or '2021-01-04' indicating week start)
-    - 'country' (country name)
-    - 'cases' or 'count' or 'value' (numeric value representing case count or search volume)
-  If your column names differ, edit the `read_and_prepare()` function mapping.
-
-- News API & SMS/email require API keys / account setup. See placeholders in the code.
-
-"""
-
 import io
 import os
 from datetime import datetime, timedelta
@@ -348,13 +305,6 @@ else:
 # News & Health Guidelines integration (placeholder)
 st.markdown('---')
 st.header('📰 News & Health Guidelines')
-# st.write('This section can fetch news via NewsAPI and show WHO/CDC guidance when risk is high. Provide NEWS_API_KEY in environment to enable.')
-# NEWS_API_KEY = os.environ.get('NEWS_API_KEY')
-# if NEWS_API_KEY:
-#     st.write('NEWS_API_KEY found — example fetch would appear here (requires requests & API usage).')
-# else:
-#     st.info('To enable real-time news, set environment variable NEWS_API_KEY and uncomment the News fetch block in the script.')
-# Sidebar option: keyword for news search
 keyword = st.sidebar.text_input("Search keyword for news", value="influenza")
 
 # Google News RSS feed
